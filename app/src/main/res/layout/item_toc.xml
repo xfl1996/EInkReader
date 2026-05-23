@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 列表项：章节标题 -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toc_item_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="14dp"
+    android:textSize="15sp"
+    android:textColor="@color/text_primary"
+    android:background="?android:attr/selectableItemBackground"
+    android:singleLine="true"
+    android:ellipsize="end" />

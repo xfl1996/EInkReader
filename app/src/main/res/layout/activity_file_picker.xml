@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <!-- 顶部标题栏（统一风格） -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/btn_file_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="← 返回"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+        <View android:layout_width="1dp" android:layout_height="32dp" android:background="@android:color/black" />
+
+        <TextView
+            android:id="@+id/btn_file_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="主页"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+        <View android:layout_width="1dp" android:layout_height="32dp" android:background="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_current_path"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="选择文件"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:singleLine="true"
+            android:ellipsize="middle" />
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/black" />
+
+    <!-- 当前路径提示 -->
+    <TextView
+        android:id="@+id/tv_path_display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="11sp"
+        android:textColor="#666666"
+        android:background="#F5F5F5"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/black" />
+
+    <!-- 文件/文件夹列表 -->
+    <ListView
+        android:id="@+id/file_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/black"
+        android:dividerHeight="1dp" />
+
+    <!-- 空目录提示 -->
+    <TextView
+        android:id="@+id/tv_empty_dir"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="此文件夹为空"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+</LinearLayout>

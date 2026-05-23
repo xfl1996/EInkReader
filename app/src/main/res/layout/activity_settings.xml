@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 标题栏 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="24dp" />
+
+        <!-- 显示设置 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="显示设置"
+            android:textSize="14sp"
+            android:textColor="@color/gray_dark"
+            android:layout_marginBottom="8dp" />
+
+        <!-- 字体大小 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:layout_marginBottom="12dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="字体大小" android:textSize="15sp" />
+            <SeekBar android:id="@+id/seek_font_size"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:max="30" android:progress="8" android:layout_marginTop="4dp" />
+            <TextView android:id="@+id/text_font_size"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="18sp" android:textSize="12sp" android:textColor="@color/gray_dark" />
+        </LinearLayout>
+
+        <!-- 行距 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:layout_marginBottom="12dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="行距" android:textSize="15sp" />
+            <SeekBar android:id="@+id/seek_line_spacing"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:max="20" android:progress="5" android:layout_marginTop="4dp" />
+            <TextView android:id="@+id/text_line_spacing"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="1.5x" android:textSize="12sp" android:textColor="@color/gray_dark" />
+        </LinearLayout>
+
+        <!-- 刷新设置 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-Ink 刷新设置"
+            android:textSize="14sp"
+            android:textColor="@color/gray_dark"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- 刷新模式 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:layout_marginBottom="12dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="默认刷新模式" android:textSize="15sp" />
+            <Spinner android:id="@+id/spinner_refresh_mode"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- 全局刷新间隔 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:layout_marginBottom="12dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="全局刷新间隔（页数）" android:textSize="15sp" />
+            <SeekBar android:id="@+id/seek_refresh_interval"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:max="49" android:progress="9" android:layout_marginTop="4dp" />
+            <TextView android:id="@+id/text_refresh_interval"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="每 10 页" android:textSize="12sp" android:textColor="@color/gray_dark" />
+        </LinearLayout>
+
+        <!-- 翻页设置 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="翻页设置"
+            android:textSize="14sp"
+            android:textColor="@color/gray_dark"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- 翻页方式 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:layout_marginBottom="12dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="翻页方式" android:textSize="15sp" />
+            <Spinner android:id="@+id/spinner_page_mode"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- 设备信息 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备信息"
+            android:textSize="14sp"
+            android:textColor="@color/gray_dark"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView android:id="@+id/text_device_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="检测中..."
+            android:textSize="12sp"
+            android:textColor="@color/gray_dark"
+            android:fontFamily="monospace"
+            android:padding="8dp"
+            android:background="@color/gray_light" />
+
+        <!-- 日志导出 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日志与调试"
+            android:textSize="14sp"
+            android:textColor="@color/gray_dark"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <Button android:id="@+id/btn_export_log"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="导出运行日志"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:background="@color/gray_light"
+            android:layout_marginBottom="8dp" />
+
+        <Button android:id="@+id/btn_clean_logs"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="清理 7 天前的日志"
+            android:textSize="15sp"
+            android:background="@color/gray_light"
+            android:layout_marginBottom="12dp" />
+
+        <TextView android:id="@+id/text_log_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="日志文件位置: 加载中..."
+            android:textSize="11sp"
+            android:textColor="@color/gray_dark"
+            android:fontFamily="monospace"
+            android:padding="6dp"
+            android:background="@color/gray_light" />
+
+    </LinearLayout>
+</ScrollView>

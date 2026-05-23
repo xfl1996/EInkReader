@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <!-- 标题栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@android:color/white">
+        <TextView android:id="@+id/btn_back" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="← 返回" android:textColor="@android:color/black" android:textSize="15sp" />
+        <View android:layout_width="1dp" android:layout_height="32dp" android:background="@android:color/black" />
+        <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:gravity="center" android:text="阅读设置" android:textColor="@android:color/black" android:textSize="16sp" android:textStyle="bold" />
+        <View android:layout_width="1dp" android:layout_height="32dp" android:background="@android:color/black" />
+        <TextView android:id="@+id/btn_reset_defaults" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="恢复默认" android:textColor="@android:color/black" android:textSize="14sp" />
+    </LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@android:color/black" />
+
+    <!-- 设置内容 -->
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:id="@+id/settings_content" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+            <!-- ===== 字号 ===== -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="字号" android:textSize="15sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_size_minus" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="－" android:textSize="20sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_size_value" android:layout_width="60dp" android:layout_height="40dp" android:gravity="center" android:text="20" android:textSize="16sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_size_plus" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="＋" android:textSize="20sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+
+            <!-- ===== 行距 ===== -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="行距" android:textSize="15sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_line_spacing_minus" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="－" android:textSize="20sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_line_spacing_value" android:layout_width="60dp" android:layout_height="40dp" android:gravity="center" android:text="1.3" android:textSize="16sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_line_spacing_plus" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="＋" android:textSize="20sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+
+            <!-- ===== 段距 ===== -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="段距" android:textSize="15sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_paragraph_spacing_minus" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="－" android:textSize="20sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_paragraph_spacing_value" android:layout_width="60dp" android:layout_height="40dp" android:gravity="center" android:text="0" android:textSize="16sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_paragraph_spacing_plus" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="＋" android:textSize="20sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+
+            <!-- ===== 字距 ===== -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="字距" android:textSize="15sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_letter_spacing_minus" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="－" android:textSize="20sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_letter_spacing_value" android:layout_width="60dp" android:layout_height="40dp" android:gravity="center" android:text="0" android:textSize="16sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_letter_spacing_plus" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="＋" android:textSize="20sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+
+            <!-- ===== 粗细 ===== -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="粗细" android:textSize="15sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_weight_minus" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="－" android:textSize="20sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_weight_value" android:layout_width="80dp" android:layout_height="40dp" android:gravity="center" android:text="标准" android:textSize="14sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_weight_plus" android:layout_width="48dp" android:layout_height="40dp" android:gravity="center" android:text="＋" android:textSize="20sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+
+            <!-- ===== 触屏翻页模式 ===== -->
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#CCCCCC" android:layout_marginTop="8dp" />
+            <TextView android:layout_width="match_parent" android:layout_height="36dp" android:gravity="center_vertical" android:text="触屏翻页" android:textSize="14sp" android:textColor="@android:color/black" android:paddingLeft="12dp" android:textStyle="bold" />
+            <RadioGroup android:id="@+id/rg_touch_mode" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <RadioButton android:id="@+id/rb_tap_left_right" android:layout_width="0dp" android:layout_height="36dp" android:layout_weight="1" android:text="点左/右" android:textSize="13sp" android:textColor="@android:color/black" android:button="@null" android:drawableRight="@android:drawable/btn_radio" android:gravity="center_vertical" android:checked="true" />
+                <RadioButton android:id="@+id/rb_tap_anywhere" android:layout_width="0dp" android:layout_height="36dp" android:layout_weight="1" android:text="点任意" android:textSize="13sp" android:textColor="@android:color/black" android:button="@null" android:drawableRight="@android:drawable/btn_radio" android:gravity="center_vertical" />
+                <RadioButton android:id="@+id/rb_swipe" android:layout_width="0dp" android:layout_height="36dp" android:layout_weight="1" android:text="滑动" android:textSize="13sp" android:textColor="@android:color/black" android:button="@null" android:drawableRight="@android:drawable/btn_radio" android:gravity="center_vertical" />
+            </RadioGroup>
+
+            <!-- ===== 阅读区域边距 ===== -->
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#CCCCCC" android:layout_marginTop="8dp" />
+            <TextView android:layout_width="match_parent" android:layout_height="36dp" android:gravity="center_vertical" android:text="阅读区域边距(dp)" android:textSize="14sp" android:textColor="@android:color/black" android:paddingLeft="12dp" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="上边距" android:textSize="14sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_padding_top_minus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="－" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_padding_top_value" android:layout_width="50dp" android:layout_height="36dp" android:gravity="center" android:text="6" android:textSize="15sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_padding_top_plus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="＋" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="下边距" android:textSize="14sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_padding_bottom_minus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="－" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_padding_bottom_value" android:layout_width="50dp" android:layout_height="36dp" android:gravity="center" android:text="6" android:textSize="15sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_padding_bottom_plus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="＋" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="左右边距" android:textSize="14sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_padding_horizontal_minus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="－" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_padding_horizontal_value" android:layout_width="50dp" android:layout_height="36dp" android:gravity="center" android:text="8" android:textSize="15sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_padding_horizontal_plus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="＋" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+
+            <!-- ===== 翻页重叠行数 ===== -->
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#CCCCCC" android:layout_marginTop="8dp" />
+            <TextView android:layout_width="match_parent" android:layout_height="36dp" android:gravity="center_vertical" android:text="翻页重叠(行)" android:textSize="14sp" android:textColor="@android:color/black" android:paddingLeft="12dp" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="重叠行数\n下页顶部保留上页底部N行" android:textSize="13sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_overlap_lines_minus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="－" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_overlap_lines_value" android:layout_width="50dp" android:layout_height="36dp" android:gravity="center" android:text="0" android:textSize="15sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_overlap_lines_plus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="＋" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+
+            <!-- ===== 全屏刷新设置 ===== -->
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#CCCCCC" android:layout_marginTop="8dp" />
+            <TextView android:layout_width="match_parent" android:layout_height="36dp" android:gravity="center_vertical" android:text="墨水屏全刷" android:textSize="14sp" android:textColor="@android:color/black" android:paddingLeft="12dp" android:textStyle="bold" />
+            <CheckBox android:id="@+id/cb_chapter_refresh" android:layout_width="match_parent" android:layout_height="36dp" android:text="切章时自动全刷" android:textSize="13sp" android:textColor="@android:color/black" android:checked="true" android:paddingLeft="12dp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="隔N页全刷\n0=关闭" android:textSize="13sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_page_refresh_minus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="－" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_page_refresh_value" android:layout_width="60dp" android:layout_height="36dp" android:gravity="center" android:text="关闭" android:textSize="14sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_page_refresh_plus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="＋" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+
+            <!-- 全刷延时设置 -->
+            <TextView android:layout_width="match_parent" android:layout_height="36dp" android:gravity="center_vertical" android:text="全刷时序" android:textSize="13sp" android:textColor="@android:color/black" android:paddingLeft="12dp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="黑屏→白屏\n全黑后多久变白" android:textSize="13sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_refresh_delay1_minus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="－" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_refresh_delay1_value" android:layout_width="70dp" android:layout_height="36dp" android:gravity="center" android:text="400ms" android:textSize="14sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_refresh_delay1_plus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="＋" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="白屏→恢复\n全白后多久恢复" android:textSize="13sp" android:textColor="@android:color/black" />
+                <TextView android:id="@+id/btn_refresh_delay2_minus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="－" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+                <TextView android:id="@+id/tv_refresh_delay2_value" android:layout_width="70dp" android:layout_height="36dp" android:gravity="center" android:text="400ms" android:textSize="14sp" android:textColor="@android:color/black" android:textStyle="bold" />
+                <TextView android:id="@+id/btn_refresh_delay2_plus" android:layout_width="42dp" android:layout_height="36dp" android:gravity="center" android:text="＋" android:textSize="18sp" android:textColor="@android:color/black" android:background="@android:color/white" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+
+            <!-- ===== 物理按键映射 ===== -->
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#CCCCCC" android:layout_marginTop="8dp" />
+            <TextView android:layout_width="match_parent" android:layout_height="36dp" android:gravity="center_vertical" android:text="物理按键映射" android:textSize="14sp" android:textColor="@android:color/black" android:paddingLeft="12dp" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+                <TextView android:id="@+id/btn_set_prev_key" android:layout_width="0dp" android:layout_height="36dp" android:layout_weight="1" android:gravity="center" android:text="设置上一页键" android:textSize="13sp" android:textColor="@android:color/black" android:background="#EEEEEE" android:clickable="true" android:focusable="true" />
+                <View android:layout_width="8dp" android:layout_height="1dp" />
+                <TextView android:id="@+id/btn_set_next_key" android:layout_width="0dp" android:layout_height="36dp" android:layout_weight="1" android:gravity="center" android:text="设置下一页键" android:textSize="13sp" android:textColor="@android:color/black" android:background="#EEEEEE" android:clickable="true" android:focusable="true" />
+            </LinearLayout>
+            <TextView android:id="@+id/tv_prev_key_value" android:layout_width="match_parent" android:layout_height="28dp" android:gravity="center_vertical" android:text="当前: PAGE_UP (102)" android:textSize="12sp" android:textColor="#555555" android:paddingLeft="12dp" />
+            <TextView android:id="@+id/tv_next_key_value" android:layout_width="match_parent" android:layout_height="28dp" android:gravity="center_vertical" android:text="当前: PAGE_DOWN (103)" android:textSize="12sp" android:textColor="#555555" android:paddingLeft="12dp" />
+            <TextView android:id="@+id/tv_key_mapping_hint" android:layout_width="match_parent" android:layout_height="28dp" android:gravity="center" android:text="" android:textSize="12sp" android:textColor="#FF6600" android:visibility="gone" />
+            <TextView android:id="@+id/btn_clear_key_mapping" android:layout_width="match_parent" android:layout_height="36dp" android:gravity="center" android:text="清除映射（恢复默认）" android:textSize="13sp" android:textColor="#FF4444" android:background="@android:color/white" android:clickable="true" android:focusable="true" android:paddingLeft="12dp" android:paddingRight="12dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

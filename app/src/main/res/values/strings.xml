@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EInkReader</string>
+    <string name="reader">阅读</string>
+    <string name="settings">设置</string>
+    <string name="library">书库</string>
+    <string name="import_book">导入书籍</string>
+    <string name="delete_book">删除书籍</string>
+    <string name="convert_to_epub">转换为 EPUB</string>
+    <string name="convert_prompt">是否将此文件转换为 EPUB 格式？转换后可获得更好的排版效果</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="font_size">字体大小</string>
+    <string name="line_spacing">行距</string>
+    <string name="page_margin">页边距</string>
+    <string name="refresh_mode">刷新模式</string>
+    <string name="full_refresh_interval">全局刷新间隔</string>
+    <string name="page_turn_mode">翻页方式</string>
+    <string name="auto">自动</string>
+    <string name="partial_refresh">局部刷新</string>
+    <string name="full_refresh">全局刷新</string>
+    <string name="no_books">书库空空如也</string>
+    <string name="loading">加载中...</string>
+    <string name="chapter">章</string>
+    <string name="page">页</string>
+    <string name="bookmark">书签</string>
+    <string name="table_of_contents">目录</string>
+    <string name="search">搜索</string>
+</resources>
