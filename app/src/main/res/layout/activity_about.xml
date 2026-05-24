@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFFFF">
+
+    <!-- 标题栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:background="#FFFFFFFF">
+
+        <TextView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回"
+            android:textSize="18sp"
+            android:textColor="#FF000000"
+            android:padding="8dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关于"
+            android:textSize="20sp"
+            android:textColor="#FF000000"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FFCCCCCC" />
+
+    <!-- 内容区 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center_horizontal">
+
+            <!-- 应用名 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EInkReader"
+                android:textSize="26sp"
+                android:textColor="#FF000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="版本 v1.0.1"
+                android:textSize="16sp"
+                android:textColor="#FF666666"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="超轻量墨水屏小说阅读器"
+                android:textSize="14sp"
+                android:textColor="#FF999999"
+                android:layout_marginTop="4dp" />
+
+            <!-- 分隔线 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#FFCCCCCC"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp" />
+
+            <!-- 开发者 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开发者"
+                android:textSize="18sp"
+                android:textColor="#FF000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="xfl1996"
+                android:textSize="16sp"
+                android:textColor="#FF333333"
+                android:layout_marginTop="4dp" />
+
+            <!-- B站二维码 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B站关注我"
+                android:textSize="16sp"
+                android:textColor="#FF000000"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp" />
+
+            <ImageView
+                android:id="@+id/iv_qrcode"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/qrcode_bilibili"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="8dp"
+                android:background="#FFFFFFFF"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="扫码访问B站主页"
+                android:textSize="13sp"
+                android:textColor="#FF999999"
+                android:layout_marginTop="4dp" />
+
+            <!-- 分隔线 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#FFCCCCCC"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp" />
+
+            <!-- 检查更新 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="检查更新"
+                android:textSize="18sp"
+                android:textColor="#FF000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_update_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点击下方按钮检查是否有新版本"
+                android:textSize="14sp"
+                android:textColor="#FF666666"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/btn_check_update"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:text="检查更新"
+                android:textSize="16sp"
+                android:textColor="#FF000000"
+                android:textStyle="bold"
+                android:background="#FFE0E0E0"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:layout_marginTop="12dp" />
+
+            <!-- 更新日志 -->
+            <TextView
+                android:id="@+id/tv_changelog_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新日志"
+                android:textSize="18sp"
+                android:textColor="#FF000000"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_changelog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#FF333333"
+                android:lineSpacingMultiplier="1.3"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

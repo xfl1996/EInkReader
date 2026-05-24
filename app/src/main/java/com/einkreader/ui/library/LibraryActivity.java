@@ -164,6 +164,15 @@ public class LibraryActivity extends Activity {
             }
         });
 
+        // 关于按钮
+        View btnAbout = findViewById(R.id.btn_about);
+        btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LibraryActivity.this, com.einkreader.ui.settings.AboutActivity.class));
+            }
+        });
+
         // 加载已有书籍
         loadBookList();
 

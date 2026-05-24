@@ -231,6 +231,14 @@ public class ReaderActivity extends Activity {
             public void onSwipeDown() {
                 toggleMenu(true);
             }
+            @Override
+            public void onNeedPrevChapter() {
+                goToPrevChapterLastPage();
+            }
+            @Override
+            public void onNeedNextChapter() {
+                goToNextChapterFirstPage();
+            }
         });
 
         // 获取传递的书籍信息并加载
@@ -406,6 +414,43 @@ public class ReaderActivity extends Activity {
         }
 
         currentChapterIndex = newIndex;
+        readerView.setChapter(chapters.get(currentChapterIndex));
+        updateStatusBar();
+    }
+
+    /**
+     * 跳到上一章的最后一页
+     */
+    private void goToPrevChapterLastPage() {
+        if (chapters == null || chapters.isEmpty()) return;
+        if (currentChapterIndex <= 0) {
+            Toast.makeText(this, "已经是第一章了", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        currentChapterIndex--;
+        readerView.setChapter(chapters.get(currentChapterIndex));
+        // 等分页完成后跳到最后一页
+        readerView.post(new Runnable() {
+            @Override
+            public void run() {
+                if (readerView.getTotalPages() > 0) {
+                    readerView.goToPage(readerView.getTotalPages() - 1);
+                }
+                updateStatusBar();
+            }
+        });
+    }
+
+    /**
+     * 跳到下一章的第一页
+     */
+    private void goToNextChapterFirstPage() {
+        if (chapters == null || chapters.isEmpty()) return;
+        if (currentChapterIndex >= chapters.size() - 1) {
+            Toast.makeText(this, "已经是最后一章了", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        currentChapterIndex++;
         readerView.setChapter(chapters.get(currentChapterIndex));
         updateStatusBar();
     }

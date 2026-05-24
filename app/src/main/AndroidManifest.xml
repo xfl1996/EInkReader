@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
@@ -56,6 +57,11 @@
         <activity
             android:name=".ui.reader.ReadingSettingsActivity"
             android:label="阅读设置"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.settings.AboutActivity"
+            android:label="关于"
             android:screenOrientation="portrait" />
 
         <activity

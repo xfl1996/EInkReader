@@ -55,6 +55,17 @@
             android:text="退出"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
+        <View android:layout_width="1dp" android:layout_height="32dp" android:background="@android:color/black" />
+
+        <TextView
+            android:id="@+id/btn_about"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="关于"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <!-- 分隔线 -->

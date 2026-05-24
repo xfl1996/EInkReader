@@ -39,6 +39,8 @@ public class ReaderView extends View {
         void onChapterChanged(int chapterIndex);
         void onTapCenter();
         void onSwipeDown();
+        void onNeedPrevChapter();
+        void onNeedNextChapter();
     }
 
     // --- 配置 ---
@@ -97,6 +99,7 @@ public class ReaderView extends View {
 
     // --- dp 转换 ---
     private float density;
+    private float fontScale;
 
     // --- SharedPreferences ---
     private SharedPreferences prefs;
@@ -118,6 +121,7 @@ public class ReaderView extends View {
 
     private void init(Context context) {
         density = context.getResources().getDisplayMetrics().density;
+        fontScale = context.getResources().getConfiguration().fontScale;
         refreshHandler = new Handler(Looper.getMainLooper());
 
         // 加载设置
@@ -127,7 +131,7 @@ public class ReaderView extends View {
         // 初始化画笔
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(textColor);
-        textPaint.setTextSize(textSize * density);
+        textPaint.setTextSize(textSize * density * fontScale);
         applyTextPaintSettings();
 
         // 手势检测
@@ -255,7 +259,7 @@ public class ReaderView extends View {
 
     private void applyTextPaintSettings() {
         if (textPaint == null) return;
-        textPaint.setTextSize(textSize * density);
+        textPaint.setTextSize(textSize * density * fontScale);
 
         // 字体粗细：用 fakeBoldText 实现连续可调
         // weight: -50 ~ +50, 0=标准
@@ -291,6 +295,10 @@ public class ReaderView extends View {
             checkAutoFullRefresh();
             return true;
         }
+        // 已在最后一行，通知 Activity 跳到下一章开头
+        if (pageChangeListener != null) {
+            pageChangeListener.onNeedNextChapter();
+        }
         return false;
     }
 
@@ -304,6 +312,10 @@ public class ReaderView extends View {
             }
             checkAutoFullRefresh();
             return true;
+        }
+        // 已在第一页，通知 Activity 跳到上一章结尾
+        if (pageChangeListener != null) {
+            pageChangeListener.onNeedPrevChapter();
         }
         return false;
     }
@@ -476,7 +488,7 @@ public class ReaderView extends View {
         java.util.List<String> lineList = new java.util.ArrayList<>();
 
         float contentWidth = viewWidth - (paddingLeft + paddingRight) * density;
-        float indent = textSize * density * 2f;  // 段首缩进：2个字宽
+        float indent = textPaint.measureText("字") * 2f;  // 段首缩进：2个字宽（自动适配字体大小）
 
         // 使用 Paint.FontMetrics 精确计算行高，避免翻页重叠
         Paint.FontMetrics fm = textPaint.getFontMetrics();
@@ -565,7 +577,7 @@ public class ReaderView extends View {
         float lineHeight = realLineHeight * lineSpacing;
         float paraGap = paragraphSpacing * density;
         float bottomLimit = viewHeight - paddingBottom * density;
-        float indent = textSize * density * 2f;  // 段首缩进：2个字宽
+        float indent = textPaint.measureText("字") * 2f;  // 段首缩进：2个字宽（自动适配字体大小）
 
         int stride = Math.max(1, linesPerPage - overlapLines);
         int startLine = currentPage * stride;
@@ -586,7 +598,7 @@ public class ReaderView extends View {
             }
             if (y + lineHeight > bottomLimit) break;
             float lineX = needIndent ? x + indent : x;
-            canvas.drawText(lines[i], lineX, y + textSize * density, textPaint);
+            canvas.drawText(lines[i], lineX, y + textSize * density * fontScale, textPaint);
             y += lineHeight;
             drawnLines++;
             needIndent = false;
