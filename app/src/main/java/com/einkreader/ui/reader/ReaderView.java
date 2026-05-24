@@ -523,9 +523,18 @@ public class ReaderView extends View {
 
         lines = lineList.toArray(new String[0]);
 
-        // 计算每页行数
+        // 计算每页行数：用有效高度（减去空行的段距差值）
         float totalContentHeight = viewHeight - (paddingTop + paddingBottom) * density;
-        float exactLinesPerPage = totalContentHeight / lineHeight;
+        float emptyH = Math.max(paraGap, 2 * density);
+        // 粗估空行比例来修正每页行数
+        int totalEmpty = 0, totalNonEmpty = 0;
+        for (String l : lines) {
+            if (l.isEmpty()) totalEmpty++; else totalNonEmpty++;
+        }
+        float avgEmptyRatio = totalNonEmpty > 0 ? (float) totalEmpty / (totalEmpty + totalNonEmpty) : 0f;
+        float effectiveLineHeight = lineHeight * (1 - avgEmptyRatio) + emptyH * avgEmptyRatio;
+        if (effectiveLineHeight < emptyH) effectiveLineHeight = emptyH;
+        float exactLinesPerPage = totalContentHeight / effectiveLineHeight;
         linesPerPage = Math.max(1, (int) exactLinesPerPage);
 
         // 翻页重叠：每页实际前进 linesPerPage - overlapLines 行
@@ -565,14 +574,17 @@ public class ReaderView extends View {
         boolean needIndent = true;
         int drawnLines = 0;
         for (int i = startLine; i < lines.length; i++) {
-            if (y + lineHeight > bottomLimit || drawnLines >= linesPerPage) break;
+            if (drawnLines >= linesPerPage) break;
 
             if (lines[i].isEmpty()) {
-                y += lineHeight;  // 空行与文本行等高，与 paginate() 一致
+                float emptyH = Math.max(paraGap, 2 * density);  // 段距至少2dp
+                if (y + emptyH > bottomLimit) break;
+                y += emptyH;
                 needIndent = true;
                 drawnLines++;
                 continue;
             }
+            if (y + lineHeight > bottomLimit) break;
             float lineX = needIndent ? x + indent : x;
             canvas.drawText(lines[i], lineX, y + textSize * density, textPaint);
             y += lineHeight;
