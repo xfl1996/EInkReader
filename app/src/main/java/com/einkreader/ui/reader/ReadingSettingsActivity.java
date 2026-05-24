@@ -1,6 +1,7 @@
 package com.einkreader.ui.reader;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,8 +11,15 @@ import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.einkreader.R;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * 阅读设置页面 - 纯文字加减按钮风格，适配墨水屏
@@ -31,6 +39,8 @@ public class ReadingSettingsActivity extends Activity {
     /** 全刷延时 SharedPreferences key */
     public static final String KEY_REFRESH_DELAY1 = "refresh_delay1";
     public static final String KEY_REFRESH_DELAY2 = "refresh_delay2";
+
+    private static final int REQUEST_PICK_FONT = 3001;
 
     // 字号 (10-40)
     private int fontSize = 20;
@@ -173,6 +183,27 @@ public class ReadingSettingsActivity extends Activity {
                 fontWeight = v;
                 String label = v == 0 ? "标准" : (v > 0 ? "粗 (+" + v + ")" : "细 (" + v + ")");
                 tvWeightValue.setText(label);
+            }
+        });
+
+        // ===== 自定义字体 =====
+        final TextView tvCurrentFont = findViewById(R.id.tv_current_font);
+        String savedFontPath = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getString("custom_font_path", null);
+        if (savedFontPath != null && !savedFontPath.isEmpty()) {
+            tvCurrentFont.setText(new File(savedFontPath).getName());
+        }
+        findViewById(R.id.btn_import_font).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent intent = new Intent(ReadingSettingsActivity.this, com.einkreader.ui.library.FilePickerActivity.class);
+                intent.putExtra("filter_extension", ".ttf");
+                startActivityForResult(intent, REQUEST_PICK_FONT);
+            }
+        });
+        findViewById(R.id.btn_reset_font).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit().remove("custom_font_path").apply();
+                tvCurrentFont.setText("系统默认");
+                Toast.makeText(ReadingSettingsActivity.this, "已恢复默认字体", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -360,6 +391,44 @@ public class ReadingSettingsActivity extends Activity {
         editor.putString(KEY_NEXT_KEY_NAME, nextKeyName);
         editor.apply();
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_PICK_FONT && resultCode == RESULT_OK && data != null) {
+            String fontPath = data.getStringExtra(com.einkreader.ui.library.FilePickerActivity.EXTRA_SELECTED_PATH);
+            if (fontPath != null && fontPath.toLowerCase().endsWith(".ttf")) {
+                // 复制字体到应用私有目录，保证重装后也能用
+                try {
+                    File srcFile = new File(fontPath);
+                    File destDir = new File(getFilesDir(), "fonts");
+                    destDir.mkdirs();
+                    File destFile = new File(destDir, srcFile.getName());
+                    copyFile(srcFile, destFile);
+                    // 保存路径
+                    getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit()
+                        .putString("custom_font_path", destFile.getAbsolutePath()).apply();
+                    TextView tvCurrentFont = findViewById(R.id.tv_current_font);
+                    tvCurrentFont.setText(destFile.getName());
+                    Toast.makeText(this, "字体已导入: " + destFile.getName(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(this, "字体导入失败: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    private void copyFile(File src, File dst) throws Exception {
+        InputStream in = new FileInputStream(src);
+        OutputStream out = new FileOutputStream(dst);
+        byte[] buf = new byte[4096];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+        in.close();
+        out.close();
     }
 
     @Override

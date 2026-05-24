@@ -48,6 +48,7 @@ public class FilePickerActivity extends Activity {
     private List<File> items = new ArrayList<File>();
     private List<File> displayFiles = new ArrayList<File>();
     private ArrayAdapter<String> adapter;
+    private String filterExtension = null;  // 可选的文件扩展名过滤器
     private SharedPreferences prefs;
 
     @Override
@@ -78,6 +79,9 @@ public class FilePickerActivity extends Activity {
                 finish();
             }
         });
+
+        // 读取过滤器
+        filterExtension = getIntent().getStringExtra("filter_extension");
 
         // 文件列表点击
         fileList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -213,8 +217,16 @@ public class FilePickerActivity extends Activity {
                     dirs.add(f);
                 } else {
                     String name = f.getName().toLowerCase();
-                    if (name.endsWith(".txt")) txtFiles.add(f);
-                    else if (name.endsWith(".epub")) epubFiles.add(f);
+                    if (filterExtension != null) {
+                        // 过滤模式：只显示指定扩展名
+                        if (name.endsWith(filterExtension.toLowerCase())) {
+                            txtFiles.add(f);
+                        }
+                    } else {
+                        // 正常模式：显示 txt 和 epub
+                        if (name.endsWith(".txt")) txtFiles.add(f);
+                        else if (name.endsWith(".epub")) epubFiles.add(f);
+                    }
                 }
             }
 
@@ -249,8 +261,12 @@ public class FilePickerActivity extends Activity {
                 int count = f.listFiles() != null ? f.listFiles().length : 0;
                 displayNames.add("📁 " + f.getName() + "  (" + count + ")");
             } else {
-                String ext = f.getName().toLowerCase().endsWith(".epub") ? "📖" : "📄";
-                displayNames.add(ext + " " + f.getName() + "  (" + formatSize(f.length()) + ")");
+                String ext = f.getName().toLowerCase();
+                String icon;
+                if (ext.endsWith(".epub")) icon = "📖";
+                else if (ext.endsWith(".ttf")) icon = "🔤";
+                else icon = "📄";
+                displayNames.add(icon + " " + f.getName() + "  (" + formatSize(f.length()) + ")");
             }
         }
 

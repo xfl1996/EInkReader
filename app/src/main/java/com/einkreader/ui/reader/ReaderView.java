@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.Scroller;
 
+import java.io.File;
+
 import com.einkreader.core.model.Chapter;
 
 import android.os.Handler;
@@ -56,6 +58,7 @@ public class ReaderView extends View {
     private int paddingBottom = 6;
     private int textColor = Color.BLACK;
     private int bgColor = Color.WHITE;
+    private String customFontPath = null;   // 自定义字体路径
 
     // --- 画笔 ---
     private Paint textPaint;
@@ -245,6 +248,7 @@ public class ReaderView extends View {
         overlapLines = safeGetInt("overlap_lines", 0);
         refreshDelay1 = safeGetInt(ReadingSettingsActivity.KEY_REFRESH_DELAY1, 400);
         refreshDelay2 = safeGetInt(ReadingSettingsActivity.KEY_REFRESH_DELAY2, 400);
+        customFontPath = prefs.getString("custom_font_path", null);
     }
 
     public void applySettings() {
@@ -261,18 +265,30 @@ public class ReaderView extends View {
         if (textPaint == null) return;
         textPaint.setTextSize(textSize * density * fontScale);
 
+        // 自定义字体
+        Typeface baseTypeface = Typeface.DEFAULT;
+        if (customFontPath != null && !customFontPath.isEmpty()) {
+            try {
+                File fontFile = new File(customFontPath);
+                if (fontFile.exists() && fontFile.canRead()) {
+                    baseTypeface = Typeface.createFromFile(fontFile);
+                }
+            } catch (Exception e) {
+                // 字体加载失败，用默认字体
+                baseTypeface = Typeface.DEFAULT;
+            }
+        }
+
         // 字体粗细：用 fakeBoldText 实现连续可调
         // weight: -50 ~ +50, 0=标准
         if (fontWeight == 0) {
-            textPaint.setTypeface(Typeface.DEFAULT);
+            textPaint.setTypeface(baseTypeface);
             textPaint.setFakeBoldText(false);
         } else if (fontWeight > 0) {
-            // 正数：加粗，用 fakeBoldText 模拟
-            textPaint.setTypeface(Typeface.DEFAULT);
+            textPaint.setTypeface(baseTypeface);
             textPaint.setFakeBoldText(true);
         } else {
-            // 负数：变细
-            textPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+            textPaint.setTypeface(Typeface.create(baseTypeface, Typeface.NORMAL));
             textPaint.setFakeBoldText(false);
         }
 
